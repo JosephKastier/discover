@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf node_modules",
     "start:discover-beer": "nx serve discover-beer",
     "start:beer-rack": "nx serve beer-rack",
     "build:discover-beer": "nx build discover-beer",
