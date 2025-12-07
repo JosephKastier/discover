@@ -1,0 +1,50 @@
+<div class="beer-rack">
+  <h2>🍺 Beer Rack</h2>
+
+  @if (beerFacade.isLoading()) {
+  <div class="loading">Loading beers...</div>
+  } @if (beerFacade.error()) {
+  <div class="error">{{ beerFacade.error() }}</div>
+  } @if (beerFacade.hasBeer() && !beerFacade.isLoading()) {
+  <div class="beer-count">
+    <strong>Total Beers:</strong> {{ beerFacade.beerCount() }}
+  </div>
+
+  <div class="beer-list">
+    @for (beer of beerFacade.beers(); track beer.id) {
+    <div class="beer-card">
+      <div class="beer-header">
+        <h3>{{ beer.name }}</h3>
+        <button
+          class="remove-btn"
+          (click)="beerFacade.removeBeer(beer.id)"
+          title="Remove beer"
+        >
+          ×
+        </button>
+      </div>
+      <div class="beer-details">
+        <p class="brewery">{{ beer.brewery }}</p>
+        <p class="style">{{ beer.style }}</p>
+        <div class="beer-stats">
+          <span class="abv">ABV: {{ beer.abv }}%</span>
+          @if (beer.ibu) {
+          <span class="ibu">IBU: {{ beer.ibu }}</span>
+          }
+        </div>
+        @if (beer.description) {
+        <p class="description">{{ beer.description }}</p>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  } @if (!beerFacade.hasBeer() && !beerFacade.isLoading()) {
+  <div class="empty-state">
+    <p>No beers in the rack yet. Load some beers!</p>
+    <button class="load-btn" (click)="beerFacade.loadBeers()">
+      Load Beers
+    </button>
+  </div>
+  }
+</div>
