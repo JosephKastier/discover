@@ -1,64 +1,63 @@
 name: Deploy Beer Rack
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    check-affected:
-        runs-on: ubuntu-latest
-        outputs:
-            affected: ${{ steps.affected.outputs.affected }}
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+  check-affected:
+    runs-on: ubuntu-latest
+    outputs:
+      affected: ${{ steps.affected.outputs.affected }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "24"
-                  cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Check if beer-rack is affected
-              id: affected
-              run: |
-                  npx nx show project beer-rack --affected
-                  if npx nx show projects --affected | grep -q "beer-rack"; then
-                    echo "affected=true" >> $GITHUB_OUTPUT
-                  else
-                    echo "affected=false" >> $GITHUB_OUTPUT
-                  fi
+      - name: Check if beer-rack is affected
+        id: affected
+        run: |
+          if npx nx show projects --affected --base=origin/main~1 --head=HEAD | grep -q "beer-rack"; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
 
-    deploy:
-        needs: check-affected
-        if: needs.check-affected.outputs.affected == 'true'
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
+  deploy:
+    needs: check-affected
+    if: needs.check-affected.outputs.affected == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "24"
-                  cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Build beer-rack
-              run: npx nx build beer-rack --configuration=production
+      - name: Build beer-rack
+        run: npx nx build beer-rack --configuration=production
 
-            - name: Deploy to SFTP
-              uses: pressidium/lftp-mirror-action@v1
-              with:
-                  host: ${{ secrets.SFTP_HOST }}
-                  user: ${{ secrets.SFTP_USR }}
-                  pass: ${{ secrets.SFTP_PASSWORD }}
-                  localDir: "./dist/apps/beer-rack/"
-                  remoteDir: "/dist-beer-rack/"
-                  options: "--verbose"
+      - name: Deploy to SFTP
+        uses: pressidium/lftp-mirror-action@v1
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          user: ${{ secrets.SFTP_USR }}
+          pass: ${{ secrets.SFTP_PASSWORD }}
+          localDir: "./dist/apps/beer-rack/"
+          remoteDir: "/dist-beer-rack/"
+          options: "--verbose"
