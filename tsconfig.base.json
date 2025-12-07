@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@discover/beer-rack-domain": ["libs/beer-rack-domain/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,20 +1,35 @@
-import { TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { App } from './app';
-import { NxWelcome } from './nx-welcome';
+import { RouterModule } from '@angular/router';
+import { BeerRackDomain } from '@discover/beer-rack-domain';
 
 describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [App, NxWelcome],
-    }).compileComponents();
+  let spectator: Spectator<App>;
+  const createComponent = createComponentFactory({
+    component: App,
+    imports: [RouterModule.forRoot([]), BeerRackDomain],
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome beer-rack'
-    );
+  beforeEach(() => {
+    spectator = createComponent();
+  });
+
+  it('should create', () => {
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should have title "beer-rack"', () => {
+    expect(spectator.component.title).toBe('beer-rack');
+  });
+
+  it('should render title in h1', () => {
+    const h1 = spectator.query('h1');
+    expect(h1).toBeTruthy();
+    expect(h1?.textContent).toContain('beer-rack');
+  });
+
+  it('should render BeerRackDomain component', () => {
+    const beerRackDomain = spectator.query('lib-beer-rack-domain');
+    expect(beerRackDomain).toBeTruthy();
   });
 });
