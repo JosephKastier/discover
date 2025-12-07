@@ -1,0 +1,31 @@
+# dependencies
+node_modules
+
+# IDEs
+.idea
+.vscode
+*.swp
+*.swo
+
+# misc
+.DS_Store
+
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# Angular
+.angular/cache
+
+# build output
+dist
+build
+*.log
+
+# testing
+coverage
+.nyc_output
+
+# environment
+.env
+.env.local
