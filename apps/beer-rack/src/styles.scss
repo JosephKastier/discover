@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
 @import 'bootstrap/scss/bootstrap';
 
 body {
-  font-family: 'Alegreya', serif;
+  font-family: 'Montserrat', sans-serif;
   background: linear-gradient(
       135deg,
       rgba(100, 100, 100, 0.1) 25%,

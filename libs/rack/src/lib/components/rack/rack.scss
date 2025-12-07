@@ -1,6 +1,7 @@
 .beer-rack-container {
   padding: 2rem;
   max-width: 100%;
+  background-color: #e8e8e8;
 
   .rack-header {
     display: flex;
@@ -27,33 +28,32 @@
 
   .rack-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 0;
     padding: 0;
-    row-gap: 0.8rem;
+    row-gap: 0.5rem;
   }
 
   .rack-slot {
     position: relative;
-    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0;
+    height: 170px;
     background: linear-gradient(
       to bottom,
       transparent 0%,
       transparent 82%,
-      #8b6914 82%,
-      #b8941f 84%,
-      #6d5412 87%,
-      #8b6914 89%,
-      #5a4410 93%,
-      #3d2f0a 100%
+      #c8a882 82%,
+      #d4b896 84%,
+      #b8956f 87%,
+      #c8a882 89%,
+      #a68570 93%,
+      #8b6f47 100%
     );
     background-size: 100% 100%;
-    transition: all 0.3s ease;
 
     &::after {
       content: '';
@@ -64,26 +64,18 @@
       height: 15%;
       background: repeating-linear-gradient(
         90deg,
-        #8b6914 0px,
-        #a0781a 2px,
-        #6d5412 4px,
-        #8b6914 6px
+        #b8956f 0px,
+        #c8a882 2px,
+        #a68570 4px,
+        #b8956f 6px
       );
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      border-top: 2px solid #6d5412;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 8px 12px rgba(0, 0, 0, 0.3);
+      border-top: 2px solid #8b6f47;
     }
 
     .slot-number {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      font-size: 0.55rem;
-      color: rgba(255, 255, 255, 0.4);
-      font-weight: 500;
-      background-color: rgba(0, 0, 0, 0.15);
-      padding: 1px 4px;
-      border-radius: 3px;
-      z-index: 10;
+      display: none;
     }
 
     .beer-bottle {
@@ -93,14 +85,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      padding: 0.3rem 0.5rem 1.5rem;
+      justify-content: flex-start;
+      padding: 1rem 0.3rem 0;
       z-index: 5;
       overflow: visible;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #ffa726;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
 
       .beer-image {
-        width: 70%;
-        height: 70%;
+        width: 90%;
+        height: 90%;
         object-fit: contain;
         margin-bottom: 0.3rem;
         position: relative;
@@ -142,15 +149,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
       width: 100%;
       height: 100%;
-      padding: 0 0.5rem 1rem;
+      padding: 1rem 0.3rem 0;
       z-index: 5;
 
       .beer-image {
-        width: 70%;
-        height: 70%;
+        width: 90%;
+        height: 90%;
         object-fit: contain;
       }
     }
@@ -160,8 +167,100 @@
 @media (max-width: 768px) {
   .beer-rack-container {
     .rack-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
     }
+  }
+}
+
+.beer-toast {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  padding: 2rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+  z-index: 1000;
+
+  .toast-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+
+    .toast-image {
+      flex-shrink: 0;
+
+      img {
+        height: 120px;
+        width: auto;
+        object-fit: contain;
+      }
+    }
+
+    .toast-info {
+      color: #fff;
+      flex: 1;
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      p {
+        margin: 0.25rem 0;
+        line-height: 1.4;
+
+        &.brewery {
+          color: #bbb;
+          font-size: 1rem;
+        }
+
+        &.abv {
+          color: #ffa726;
+          font-weight: 600;
+          font-size: 1.1rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+      flex-shrink: 0;
+
+      &:hover {
+        color: #ffa726;
+      }
+
+      span {
+        line-height: 1;
+      }
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

@@ -1,6 +1,6 @@
 <div class="beer-rack-container">
   <div class="rack-header">
-    <h2>🍺 Bierregal</h2>
+    <h2>🍺 Bierregal.de</h2>
     <div class="rack-stats">
       <span class="badge bg-success">{{ beerFacade.beerCount() }} Biere</span>
       <span class="badge bg-secondary">{{ beerFacade.emptySlots() }} freie Plätze</span>
@@ -22,9 +22,17 @@
       <div class="slot-number">{{ slot.position }}</div>
 
       @if (slot.beer) {
-      <div class="beer-bottle" [title]="slot.beer.name">
-        <img [src]="slot.beer.imageUrl" [alt]="slot.beer.name" class="beer-image" />
-      </div>
+      <button
+        type="button"
+        class="beer-bottle"
+        [title]="slot.beer.name"
+        (click)="onBeerClick(slot.beer)"
+        (keydown.enter)="onBeerClick(slot.beer)"
+        (keydown.space)="onBeerClick(slot.beer)"
+        aria-label="Bier {{ slot.beer.name }} anzeigen"
+      >
+        <img [src]="slot.beer.imageUrl || '/dummy.png'" [alt]="slot.beer.name" class="beer-image" />
+      </button>
       } @else {
       <div class="empty-slot">
         <img src="/dummy.png" alt="Leere Flasche" class="beer-image" />
@@ -33,5 +41,23 @@
     </div>
     }
   </div>
+  } @if (selectedBeer()) {
+  <div class="beer-toast">
+    <div class="toast-content">
+      <div class="toast-image">
+        <img [src]="selectedBeer()!.imageUrl" [alt]="selectedBeer()!.name" />
+      </div>
+      <div class="toast-info">
+        <h3>{{ selectedBeer()!.name }}</h3>
+        <p class="brewery">{{ selectedBeer()!.brewery }}</p>
+        <p class="abv">ABV: {{ selectedBeer()!.abv }}%</p>
+      </div>
+      <button class="close-btn" (click)="closeBeerToast()" aria-label="Schließen">
+        <span>✕</span>
+      </button>
+    </div>
+  </div>
   }
 </div>
+
+<lib-footer></lib-footer>
