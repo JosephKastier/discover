@@ -27,44 +27,63 @@
 
   .rack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    padding: 0;
+    row-gap: 0.8rem;
   }
 
   .rack-slot {
     position: relative;
     aspect-ratio: 1;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
-    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 82%,
+      #8b6914 82%,
+      #b8941f 84%,
+      #6d5412 87%,
+      #8b6914 89%,
+      #5a4410 93%,
+      #3d2f0a 100%
+    );
+    background-size: 100% 100%;
     transition: all 0.3s ease;
 
-    &.occupied {
-      border-color: #28a745;
-      background-color: #f8fff9;
-    }
-
-    &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 15%;
+      background: repeating-linear-gradient(
+        90deg,
+        #8b6914 0px,
+        #a0781a 2px,
+        #6d5412 4px,
+        #8b6914 6px
+      );
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-top: 2px solid #6d5412;
     }
 
     .slot-number {
       position: absolute;
-      top: 4px;
-      left: 4px;
-      font-size: 0.75rem;
-      color: #6c757d;
-      font-weight: 600;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 2px 6px;
-      border-radius: 4px;
+      top: 2px;
+      left: 2px;
+      font-size: 0.55rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 500;
+      background-color: rgba(0, 0, 0, 0.15);
+      padding: 1px 4px;
+      border-radius: 3px;
+      z-index: 10;
     }
 
     .beer-bottle {
@@ -74,73 +93,66 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 1.5rem 0.5rem 0.5rem;
+      justify-content: flex-end;
+      padding: 0.3rem 0.5rem 1.5rem;
+      z-index: 5;
+      overflow: visible;
 
       .beer-image {
-        width: 40%;
+        width: 70%;
         height: 70%;
-        object-fit: cover;
-        margin-bottom: 0.5rem;
-        border-radius: 8px 8px 25px 25px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.3);
+        object-fit: contain;
+        margin-bottom: 0.3rem;
         position: relative;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: -8px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 30%;
-          height: 8px;
-          background: inherit;
-          border-radius: 4px 4px 0 0;
-          border: 3px solid rgba(255, 255, 255, 0.3);
-          border-bottom: none;
-        }
       }
 
       .beer-info {
         text-align: center;
         font-size: 0.7rem;
-        overflow: hidden;
+        overflow: visible;
         width: 100%;
+        margin-bottom: 0.3rem;
+        z-index: 5;
+        line-height: 1.2;
 
         .beer-name {
           font-weight: 600;
-          color: #333;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          margin-bottom: 1px;
         }
 
         .beer-brewery {
-          color: #6c757d;
+          color: rgba(255, 255, 255, 0.7);
           font-size: 0.65rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          margin-bottom: 1px;
         }
 
         .beer-abv {
-          color: #ff9800;
-          font-weight: 600;
-          margin-top: 2px;
+          color: #ffa726;
+          font-weight: 700;
+          font-size: 0.7rem;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
         }
       }
     }
 
     .empty-slot {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       width: 100%;
       height: 100%;
-      color: #adb5bd;
-      font-size: 0.8rem;
-      font-style: italic;
+      padding: 0 0.5rem 1rem;
+      z-index: 5;
+
+      .beer-image {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+      }
     }
   }
 }
@@ -148,7 +160,7 @@
 @media (max-width: 768px) {
   .beer-rack-container {
     .rack-grid {
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem;
     }
   }

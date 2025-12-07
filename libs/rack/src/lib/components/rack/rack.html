@@ -3,9 +3,7 @@
     <h2>🍺 Bierregal</h2>
     <div class="rack-stats">
       <span class="badge bg-success">{{ beerFacade.beerCount() }} Biere</span>
-      <span class="badge bg-secondary"
-        >{{ beerFacade.emptySlots() }} freie Plätze</span
-      >
+      <span class="badge bg-secondary">{{ beerFacade.emptySlots() }} freie Plätze</span>
     </div>
   </div>
 
@@ -25,20 +23,11 @@
 
       @if (slot.beer) {
       <div class="beer-bottle" [title]="slot.beer.name">
-        <img
-          [src]="slot.beer.imageUrl"
-          [alt]="slot.beer.name"
-          class="beer-image"
-        />
-        <div class="beer-info">
-          <div class="beer-name">{{ slot.beer.name }}</div>
-          <div class="beer-brewery">{{ slot.beer.brewery }}</div>
-          <div class="beer-abv">{{ slot.beer.abv }}% ABV</div>
-        </div>
+        <img [src]="slot.beer.imageUrl" [alt]="slot.beer.name" class="beer-image" />
       </div>
       } @else {
       <div class="empty-slot">
-        <span class="empty-text">Leer</span>
+        <img src="/dummy.png" alt="Leere Flasche" class="beer-image" />
       </div>
       }
     </div>
