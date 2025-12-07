@@ -1,7 +1,6 @@
 .beer-rack-container {
   padding: 2rem;
   max-width: 100%;
-  background-color: #e8e8e8;
 
   .rack-grid {
     display: grid;
@@ -19,18 +18,21 @@
     justify-content: flex-end;
     padding-bottom: 0;
     height: 170px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 82%,
-      #c8a882 82%,
-      #d4b896 84%,
-      #b8956f 87%,
-      #c8a882 89%,
-      #a68570 93%,
-      #8b6f47 100%
-    );
-    background-size: 100% 100%;
+    background: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 18%;
+      background-image: url('/akazie.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2), inset 0 -2px 5px rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
 
     &::after {
       content: '';
@@ -38,17 +40,19 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 15%;
+      height: 18%;
       background: repeating-linear-gradient(
         90deg,
-        #b8956f 0px,
-        #c8a882 2px,
-        #a68570 4px,
-        #b8956f 6px
+        transparent 0px,
+        rgba(0, 0, 0, 0.03) 1px,
+        transparent 2px,
+        transparent 8px,
+        rgba(255, 255, 255, 0.02) 9px,
+        transparent 10px
       );
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 8px 12px rgba(0, 0, 0, 0.3);
-      border-top: 2px solid #8b6f47;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      z-index: 2;
+      pointer-events: none;
     }
 
     .slot-number {
@@ -63,7 +67,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding: 0 0.3rem 1rem;
+      padding: 0 0.3rem 1.5rem;
       z-index: 5;
       overflow: visible;
       background: none;
@@ -93,10 +97,11 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding: 0 0.3rem 1rem;
+      padding: 0 0.3rem 1.6rem;
       width: 100%;
       height: 100%;
-      opacity: 0.3;
+      position: relative;
+      z-index: 5;
 
       .beer-image {
         height: 100%;

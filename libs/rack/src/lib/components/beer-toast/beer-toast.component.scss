@@ -46,11 +46,58 @@
           font-size: 1rem;
         }
 
-        &.abv {
+        &.style {
+          color: #aaa;
+          font-size: 0.95rem;
+          font-style: italic;
+        }
+
+        &.details {
           color: #ffa726;
           font-weight: 600;
-          font-size: 1.1rem;
-          margin-top: 0.5rem;
+          font-size: 1rem;
+          margin-top: 0.75rem;
+          display: flex;
+          gap: 1.5rem;
+
+          span {
+            display: inline-block;
+          }
+        }
+
+        &.description {
+          color: #ddd;
+          font-size: 0.95rem;
+          margin-top: 1rem;
+          line-height: 1.6;
+          max-width: 600px;
+        }
+      }
+
+      .shop-btn {
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: #ffa726;
+        color: #000;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
+
+        &:hover {
+          background-color: #ffb74d;
+          transform: translateY(-2px);
+        }
+
+        &:focus-visible {
+          outline: 2px solid #fff;
+          outline-offset: 2px;
+        }
+
+        &:active {
+          transform: translateY(0);
         }
       }
     }

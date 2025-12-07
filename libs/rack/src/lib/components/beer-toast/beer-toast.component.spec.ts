@@ -13,9 +13,9 @@ describe('BeerToastComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  it('should emit close event when onClose is called', () => {
-    jest.spyOn(spectator.component.close, 'emit');
+  it('should emit closeBeerToast event when onClose is called', () => {
+    jest.spyOn(spectator.component.closeBeerToast, 'emit');
     spectator.component.onClose();
-    expect(spectator.component.close.emit).toHaveBeenCalled();
+    expect(spectator.component.closeBeerToast.emit).toHaveBeenCalled();
   });
 });

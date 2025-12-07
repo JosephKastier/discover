@@ -1,9 +1,9 @@
-<div class="beer-rack-container">
-  <lib-rack-header
-    [beerCount]="beerFacade.beerCount()"
-    [emptySlots]="beerFacade.emptySlots()"
-  ></lib-rack-header>
+<lib-rack-header
+  [beerCount]="beerFacade.beerCount()"
+  [emptySlots]="beerFacade.emptySlots()"
+></lib-rack-header>
 
+<div class="beer-rack-container">
   @if (beerFacade.isLoading()) {
   <div class="text-center p-5">
     <div class="spinner-border text-primary" role="status">
@@ -40,7 +40,7 @@
   </div>
   }
 
-  <lib-beer-toast [beer]="selectedBeer()" (close)="closeBeerToast()"></lib-beer-toast>
+  <lib-beer-toast [beer]="selectedBeer()" (closeBeerToast)="closeBeerToast()"></lib-beer-toast>
 </div>
 
 <lib-footer></lib-footer>

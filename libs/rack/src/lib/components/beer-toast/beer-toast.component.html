@@ -7,7 +7,17 @@
     <div class="toast-info">
       <h3>{{ beer.name }}</h3>
       <p class="brewery">{{ beer.brewery }}</p>
-      <p class="abv">ABV: {{ beer.abv }}%</p>
+      <p class="style">{{ beer.style }}</p>
+      <p class="details">
+        <span>Alkohol: {{ beer.abv }}%</span>
+        @if (beer.ibu) {
+        <span>Bitterkeit: {{ beer.ibu }}</span>
+        }
+      </p>
+      @if (beer.description) {
+      <p class="description">{{ beer.description }}</p>
+      }
+      <button class="shop-btn" (click)="goToShop()">🛒 Zum Shop</button>
     </div>
     <button
       type="button"

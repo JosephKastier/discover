@@ -11,9 +11,15 @@ import { Beer } from '../../models/beer.model';
 })
 export class BeerToastComponent {
   @Input() beer: Beer | null = null;
-  @Output() close = new EventEmitter<void>();
+  @Output() closeBeerToast = new EventEmitter<void>();
 
   onClose(): void {
-    this.close.emit();
+    this.closeBeerToast.emit();
+  }
+
+  goToShop(): void {
+    // Hier könnte die Weiterleitung zum Shop erfolgen
+    // Beispiel: window.location.href = 'https://shop.example.com/beer/' + this.beer?.id;
+    console.log('Zum Shop für:', this.beer?.name);
   }
 }
