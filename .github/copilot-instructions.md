@@ -3,6 +3,7 @@
 ## Component Generation
 
 ### SCSS Files
+
 - **Verzichte auf SCSS-Dateien**, wenn kein Styling benötigt wird
 - Beim Generieren von Komponenten nur `--style=scss` verwenden, wenn tatsächlich Styles nötig sind
 - Andernfalls: `--style=none` verwenden
@@ -18,6 +19,7 @@ npx nx g @nx/angular:component my-component --style=none
 ## Dependency Management
 
 ### Installation
+
 - **NIEMALS** `--legacy-peer-deps` Flag verwenden
 - Bei Peer Dependency Konflikten: Passende Versionen finden und installieren
 - **Immer explizite Versionen** statt Ranges verwenden
@@ -35,12 +37,13 @@ npm install @ngneat/spectator --legacy-peer-deps
 ```
 
 ### Version Specification in package.json
+
 ```json
 {
   "dependencies": {
-    "@angular/core": "20.3.15",        // ✅ Explizit
-    "@angular/common": "~20.3.0",      // ❌ Range
-    "@angular/router": "^20.0.0"       // ❌ Range
+    "@angular/core": "20.3.15", // ✅ Explizit
+    "@angular/common": "~20.3.0", // ❌ Range
+    "@angular/router": "^20.0.0" // ❌ Range
   }
 }
 ```
@@ -48,6 +51,7 @@ npm install @ngneat/spectator --legacy-peer-deps
 ## Testing
 
 ### Spectator Setup
+
 - Verwende `@ngneat/spectator/jest` für Component Tests
 - Stelle sicher dass `@angular/animations` mit passender Version installiert ist
 - Prüfe Tests mit: `npm run test`
@@ -55,6 +59,7 @@ npm install @ngneat/spectator --legacy-peer-deps
 ## Library Struktur
 
 ### Path Aliases
+
 - Format: `@discover/library-name`
 - Konfiguration in `tsconfig.base.json`
 
@@ -66,9 +71,18 @@ npm install @ngneat/spectator --legacy-peer-deps
 }
 ```
 
+## Code Style
+
+### Einrückung
+
+- **Immer 2 Spaces** für alle Dateitypen (TypeScript, JavaScript, HTML, SCSS, JSON, YAML, etc.)
+- **Niemals Tabs** verwenden
+- Konfiguriert in: `.editorconfig`, `.prettierrc`, ESLint
+
 ## CI/CD
 
 ### GitHub Actions
+
 - Node.js Version: 24 (wie lokal)
 - Nx Affected wird verwendet für optimierte Builds
 - Dependencies werden mit `npm ci` installiert
