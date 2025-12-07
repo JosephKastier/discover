@@ -10,7 +10,7 @@
     "build:discover-beer": "nx build discover-beer",
     "build:beer-rack": "nx build beer-rack",
     "build:all": "nx run-many -t build",
-    "test": "nx run-many -t test --exclude=discover",
+    "test": "nx run-many -t test",
     "lint": "nx run-many -t lint"
   },
   "repository": {
