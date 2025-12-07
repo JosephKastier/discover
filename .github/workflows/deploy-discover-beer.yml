@@ -6,10 +6,8 @@ on:
       - main
 
 jobs:
-  check-affected:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      affected: ${{ steps.affected.outputs.affected }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,31 +26,17 @@ jobs:
         id: affected
         run: |
           if npx nx show projects --affected --base=origin/main~1 --head=HEAD | grep -q "discover-beer"; then
-            echo "affected=true" >> $GITHUB_OUTPUT
+            echo "is_affected=true" >> $GITHUB_OUTPUT
           else
-            echo "affected=false" >> $GITHUB_OUTPUT
+            echo "is_affected=false" >> $GITHUB_OUTPUT
           fi
 
-  deploy:
-    needs: check-affected
-    if: needs.check-affected.outputs.affected == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Build discover-beer
+        if: steps.affected.outputs.is_affected == 'true'
         run: npx nx build discover-beer --configuration=production
 
       - name: Deploy to SFTP
+        if: steps.affected.outputs.is_affected == 'true'
         uses: pressidium/lftp-mirror-action@v1
         with:
           host: ${{ secrets.SFTP_HOST }}
