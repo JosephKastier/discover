@@ -50,11 +50,56 @@ npm install @ngneat/spectator --legacy-peer-deps
 
 ## Testing
 
-### Spectator Setup
+### Unit Tests - Spectator/Jest
 
-- Verwende `@ngneat/spectator/jest` für Component Tests
-- Stelle sicher dass `@angular/animations` mit passender Version installiert ist
-- Prüfe Tests mit: `npm run test`
+- **IMMER** `@ngneat/spectator/jest` für Component Tests verwenden
+- **NIEMALS** die Standard-TestBed Syntax verwenden
+- Neue Tests oder angepasste Tests **müssen immer grün sein** bevor sie committed werden
+- Alle Tests immer ausführen mit: `npm run test` oder `nx run-many -t test`
+
+```typescript
+// ✅ RICHTIG - Mit Spectator
+import { Spectator, createComponentFactory } from '@ngneat/spectator/jest';
+import { MyComponent } from './my.component';
+
+describe('MyComponent', () => {
+  let spectator: Spectator<MyComponent>;
+  const createComponent = createComponentFactory(MyComponent);
+
+  beforeEach(() => {
+    spectator = createComponent();
+  });
+
+  it('should create', () => {
+    expect(spectator.component).toBeTruthy();
+  });
+});
+```
+
+```typescript
+// ❌ FALSCH - Standard TestBed
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MyComponent } from './my.component';
+
+describe('MyComponent', () => {
+  let component: MyComponent;
+  let fixture: ComponentFixture<MyComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MyComponent],
+    }).compileComponents();
+    // ... rest of TestBed code
+  });
+});
+```
+
+### Test Anforderungen
+
+- Tests müssen nach jeder Änderung grün sein
+- Neue Features müssen mit Tests versehen werden
+- Code Coverage sollte angemessen sein
+- Tests dokumentieren das gewünschte Verhalten
 
 ## Library Struktur
 

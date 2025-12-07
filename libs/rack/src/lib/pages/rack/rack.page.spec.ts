@@ -1,10 +1,10 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import { Rack } from './rack';
+import { RackPage } from './rack.page';
 
-describe('Rack', () => {
-  let spectator: Spectator<Rack>;
+describe('RackPage', () => {
+  let spectator: Spectator<RackPage>;
   const createComponent = createComponentFactory({
-    component: Rack,
+    component: RackPage,
   });
 
   beforeEach(() => {

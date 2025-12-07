@@ -1,0 +1,24 @@
+@if (beer) {
+<div class="beer-toast">
+  <div class="toast-content">
+    <div class="toast-image">
+      <img [src]="beer.imageUrl || '/dummy.png'" [alt]="beer.name" />
+    </div>
+    <div class="toast-info">
+      <h3>{{ beer.name }}</h3>
+      <p class="brewery">{{ beer.brewery }}</p>
+      <p class="abv">ABV: {{ beer.abv }}%</p>
+    </div>
+    <button
+      type="button"
+      class="close-btn"
+      (click)="onClose()"
+      (keydown.enter)="onClose()"
+      (keydown.space)="onClose()"
+      aria-label="Toast schließen"
+    >
+      <span>✕</span>
+    </button>
+  </div>
+</div>
+}

@@ -56,4 +56,11 @@ export default [
     // Override or add rules here
     rules: {},
   },
+  {
+    files: ['apps/**/*.html', 'libs/**/*.html'],
+    rules: {
+      '@angular-eslint/template/no-negated-async': 'error',
+      '@angular-eslint/template/use-track-by-function': 'error',
+    },
+  },
 ];

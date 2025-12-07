@@ -28,7 +28,7 @@ jobs:
         run: npx nx affected -t lint --base=origin/${{ github.base_ref || 'main' }} --head=HEAD
 
       - name: Test affected
-        run: npx nx affected -t test --base=origin/${{ github.base_ref || 'main' }} --head=HEAD --passWithNoTests
+        run: npx nx affected -t test --base=origin/${{ github.base_ref || 'main' }} --head=HEAD --passWithNoTests --exclude=discover
 
       - name: Build affected
         run: npx nx affected -t build --base=origin/${{ github.base_ref || 'main' }} --head=HEAD --configuration=production

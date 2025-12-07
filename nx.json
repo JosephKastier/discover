@@ -46,6 +46,12 @@
       }
     }
   ],
+  "projects": {
+    "discover": {
+      "projectType": "library",
+      "targets": {}
+    }
+  },
   "generators": {
     "@nx/angular:application": {
       "e2eTestRunner": "cypress",

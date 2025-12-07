@@ -1,16 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BeerFacade } from '../../facades/beer.facade';
-import { FooterComponent } from '../footer/footer.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { BeerToastComponent } from '../../components/beer-toast/beer-toast.component';
+import { RackHeaderComponent } from '../../components/rack-header/rack-header.component';
 import { CommonModule } from '@angular/common';
 import { Beer } from '../../models/beer.model';
 
 @Component({
   selector: 'lib-rack',
-  imports: [FooterComponent, CommonModule],
-  templateUrl: './rack.html',
-  styleUrl: './rack.scss',
+  imports: [FooterComponent, BeerToastComponent, RackHeaderComponent, CommonModule],
+  templateUrl: './rack.page.html',
+  styleUrl: './rack.page.scss',
 })
-export class Rack implements OnInit {
+export class RackPage implements OnInit {
   protected readonly beerFacade = inject(BeerFacade);
   protected selectedBeer = signal<Beer | null>(null);
 

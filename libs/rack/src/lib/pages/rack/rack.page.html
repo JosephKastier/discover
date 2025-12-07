@@ -1,11 +1,8 @@
 <div class="beer-rack-container">
-  <div class="rack-header">
-    <h2>🍺 Bierregal.de</h2>
-    <div class="rack-stats">
-      <span class="badge bg-success">{{ beerFacade.beerCount() }} Biere</span>
-      <span class="badge bg-secondary">{{ beerFacade.emptySlots() }} freie Plätze</span>
-    </div>
-  </div>
+  <lib-rack-header
+    [beerCount]="beerFacade.beerCount()"
+    [emptySlots]="beerFacade.emptySlots()"
+  ></lib-rack-header>
 
   @if (beerFacade.isLoading()) {
   <div class="text-center p-5">
@@ -41,23 +38,9 @@
     </div>
     }
   </div>
-  } @if (selectedBeer()) {
-  <div class="beer-toast">
-    <div class="toast-content">
-      <div class="toast-image">
-        <img [src]="selectedBeer()!.imageUrl" [alt]="selectedBeer()!.name" />
-      </div>
-      <div class="toast-info">
-        <h3>{{ selectedBeer()!.name }}</h3>
-        <p class="brewery">{{ selectedBeer()!.brewery }}</p>
-        <p class="abv">ABV: {{ selectedBeer()!.abv }}%</p>
-      </div>
-      <button class="close-btn" (click)="closeBeerToast()" aria-label="Schließen">
-        <span>✕</span>
-      </button>
-    </div>
-  </div>
   }
+
+  <lib-beer-toast [beer]="selectedBeer()" (close)="closeBeerToast()"></lib-beer-toast>
 </div>
 
 <lib-footer></lib-footer>
