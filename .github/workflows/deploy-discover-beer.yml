@@ -16,8 +16,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "24"
-          cache: "npm"
+          node-version: '24'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -42,6 +42,6 @@ jobs:
           host: ${{ secrets.SFTP_HOST }}
           user: ${{ secrets.SFTP_USR }}
           pass: ${{ secrets.SFTP_PASSWORD }}
-          localDir: "./dist/apps/discover-beer/"
-          remoteDir: "/dist-discover-beer/"
-          options: "--verbose"
+          localDir: './dist/apps/discover-beer/'
+          remoteDir: '/dist-discover-beer/'
+          options: '--verbose'

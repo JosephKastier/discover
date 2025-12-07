@@ -29,3 +29,5 @@ coverage
 # environment
 .env
 .env.local
+
+.angular

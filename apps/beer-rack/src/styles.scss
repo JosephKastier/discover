@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+@import 'bootstrap/scss/bootstrap';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(
+      135deg,
+      rgba(100, 100, 100, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(100, 100, 100, 0.1) 50%,
+      rgba(100, 100, 100, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(80, 80, 80, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(80, 80, 80, 0.1) 50%,
+      rgba(80, 80, 80, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-color: #5a5a5a;
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  min-height: 100vh;
+  margin: 0;
+}

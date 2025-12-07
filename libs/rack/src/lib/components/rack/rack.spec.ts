@@ -1,12 +1,10 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import { App } from './app';
-import { RouterModule } from '@angular/router';
+import { Rack } from './rack';
 
-describe('App', () => {
-  let spectator: Spectator<App>;
+describe('Rack', () => {
+  let spectator: Spectator<Rack>;
   const createComponent = createComponentFactory({
-    component: App,
-    imports: [RouterModule.forRoot([])],
+    component: Rack,
   });
 
   beforeEach(() => {
@@ -15,5 +13,9 @@ describe('App', () => {
 
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
+  });
+
+  it('should render component', () => {
+    expect(spectator.element).toBeTruthy();
   });
 });
