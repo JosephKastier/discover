@@ -8,7 +8,16 @@ export default [
     ignores: ['**/dist', '**/out-tsc', '**/*.config.*'],
   },
   {
-    files: ['apps/**/*.ts', 'apps/**/*.tsx', 'apps/**/*.js', 'apps/**/*.jsx', 'libs/**/*.ts', 'libs/**/*.tsx', 'libs/**/*.js', 'libs/**/*.jsx'],
+    files: [
+      'apps/**/*.ts',
+      'apps/**/*.tsx',
+      'apps/**/*.js',
+      'apps/**/*.jsx',
+      'libs/**/*.ts',
+      'libs/**/*.tsx',
+      'libs/**/*.js',
+      'libs/**/*.jsx',
+    ],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
