@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BeerRackDomain } from '@discover/beer-rack-domain';
+import { Rack } from '@discover/rack';
 
 @Component({
-  imports: [RouterModule, BeerRackDomain],
+  imports: [RouterModule, Rack],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

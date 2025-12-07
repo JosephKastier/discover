@@ -1,13 +1,13 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { App } from './app';
 import { RouterModule } from '@angular/router';
-import { BeerRackDomain } from '@discover/beer-rack-domain';
+import { Rack } from '@discover/rack';
 
 describe('App', () => {
   let spectator: Spectator<App>;
   const createComponent = createComponentFactory({
     component: App,
-    imports: [RouterModule.forRoot([]), BeerRackDomain],
+    imports: [RouterModule.forRoot([]), Rack],
   });
 
   beforeEach(() => {
@@ -28,8 +28,8 @@ describe('App', () => {
     expect(h1?.textContent).toContain('beer-rack');
   });
 
-  it('should render BeerRackDomain component', () => {
-    const beerRackDomain = spectator.query('lib-beer-rack-domain');
-    expect(beerRackDomain).toBeTruthy();
+  it('should render Rack component', () => {
+    const rack = spectator.query('lib-rack');
+    expect(rack).toBeTruthy();
   });
 });

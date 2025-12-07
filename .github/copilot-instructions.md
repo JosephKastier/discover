@@ -66,7 +66,7 @@ npm install @ngneat/spectator --legacy-peer-deps
 ```json
 {
   "paths": {
-    "@discover/beer-rack-domain": ["libs/beer-rack-domain/src/index.ts"]
+    "@discover/rack": ["rack/src/index.ts"]
   }
 }
 ```

@@ -1,8 +1,8 @@
 export default {
-  displayName: 'beer-rack-domain',
+  displayName: 'rack',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/beer-rack-domain',
+  coverageDirectory: '../../coverage/rack',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
