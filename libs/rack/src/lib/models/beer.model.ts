@@ -6,4 +6,10 @@ export interface Beer {
   abv: number;
   ibu?: number;
   description?: string;
+  imageUrl?: string;
+}
+
+export interface RackSlot {
+  position: number;
+  beer: Beer | null;
 }

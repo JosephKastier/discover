@@ -1,156 +1,155 @@
-.beer-rack {
-  padding: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.beer-rack-container {
+  padding: 2rem;
+  max-width: 100%;
 
-  h2 {
-    margin-bottom: 1.5rem;
-    color: #333;
-    font-size: 2rem;
+  .rack-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .rack-stats {
+      display: flex;
+      gap: 0.5rem;
+
+      .badge {
+        font-size: 1rem;
+      }
+    }
   }
 
-  .loading,
-  .error {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-
-  .loading {
-    background-color: #e3f2fd;
-    color: #1976d2;
-  }
-
-  .error {
-    background-color: #ffebee;
-    color: #c62828;
-  }
-
-  .beer-count {
-    margin-bottom: 1.5rem;
-    padding: 0.75rem;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    font-size: 1.1rem;
-  }
-
-  .beer-list {
+  .rack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
   }
 
-  .beer-card {
-    background: white;
-    border: 1px solid #ddd;
+  .rack-slot {
+    position: relative;
+    aspect-ratio: 1;
+    border: 2px solid #dee2e6;
     border-radius: 8px;
-    padding: 1.5rem;
-    transition: box-shadow 0.3s ease;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &.occupied {
+      border-color: #28a745;
+      background-color: #f8fff9;
+    }
 
     &:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .beer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      margin-bottom: 1rem;
+    .slot-number {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      font-size: 0.75rem;
+      color: #6c757d;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
 
-      h3 {
-        margin: 0;
-        font-size: 1.4rem;
-        color: #333;
+    .beer-bottle {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0.5rem 0.5rem;
+
+      .beer-image {
+        width: 40%;
+        height: 70%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+        border-radius: 8px 8px 25px 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 30%;
+          height: 8px;
+          background: inherit;
+          border-radius: 4px 4px 0 0;
+          border: 3px solid rgba(255, 255, 255, 0.3);
+          border-bottom: none;
+        }
       }
 
-      .remove-btn {
-        background: #f44336;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 28px;
-        height: 28px;
-        font-size: 1.5rem;
-        line-height: 1;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
+      .beer-info {
+        text-align: center;
+        font-size: 0.7rem;
+        overflow: hidden;
+        width: 100%;
 
-        &:hover {
-          background: #d32f2f;
+        .beer-name {
+          font-weight: 600;
+          color: #333;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .beer-brewery {
+          color: #6c757d;
+          font-size: 0.65rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .beer-abv {
+          color: #ff9800;
+          font-weight: 600;
+          margin-top: 2px;
         }
       }
     }
 
-    .beer-details {
-      .brewery {
-        font-size: 1rem;
-        color: #666;
-        margin: 0.5rem 0;
-        font-weight: 500;
-      }
-
-      .style {
-        font-size: 0.9rem;
-        color: #999;
-        margin: 0.25rem 0;
-      }
-
-      .beer-stats {
-        display: flex;
-        gap: 1rem;
-        margin: 1rem 0;
-        padding-top: 1rem;
-        border-top: 1px solid #eee;
-
-        span {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #555;
-        }
-
-        .abv {
-          color: #ff9800;
-        }
-
-        .ibu {
-          color: #4caf50;
-        }
-      }
-
-      .description {
-        font-size: 0.9rem;
-        color: #777;
-        margin-top: 1rem;
-        line-height: 1.5;
-      }
+    .empty-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: #adb5bd;
+      font-size: 0.8rem;
+      font-style: italic;
     }
   }
+}
 
-  .empty-state {
-    text-align: center;
-    padding: 3rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-
-    p {
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 1.5rem;
-    }
-
-    .load-btn {
-      background-color: #2196f3;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: #1976d2;
-      }
+@media (max-width: 768px) {
+  .beer-rack-container {
+    .rack-grid {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 0.5rem;
     }
   }
 }

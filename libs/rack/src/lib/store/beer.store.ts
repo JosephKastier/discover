@@ -6,16 +6,27 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { Beer } from '../models/beer.model';
+import { Beer, RackSlot } from '../models/beer.model';
 
 interface BeerState {
-  beers: Beer[];
+  slots: RackSlot[];
   isLoading: boolean;
   error: string | null;
 }
 
+const TOTAL_SLOTS = 96;
+
+// Initialize 96 empty slots
+const initialSlots: RackSlot[] = Array.from(
+  { length: TOTAL_SLOTS },
+  (_, i) => ({
+    position: i + 1,
+    beer: null,
+  })
+);
+
 const initialState: BeerState = {
-  beers: [],
+  slots: initialSlots,
   isLoading: false,
   error: null,
 };
@@ -23,9 +34,14 @@ const initialState: BeerState = {
 export const BeerStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withComputed(({ beers }) => ({
-    beerCount: computed(() => beers().length),
-    hasBeer: computed(() => beers().length > 0),
+  withComputed(({ slots }) => ({
+    beerCount: computed(
+      () => slots().filter((slot) => slot.beer !== null).length
+    ),
+    emptySlots: computed(
+      () => slots().filter((slot) => slot.beer === null).length
+    ),
+    hasBeer: computed(() => slots().some((slot) => slot.beer !== null)),
   })),
   withMethods((store) => ({
     loadBeers(): void {
@@ -42,6 +58,7 @@ export const BeerStore = signalStore(
             abv: 6.5,
             ibu: 65,
             description: 'A hoppy and aromatic IPA with citrus notes',
+            imageUrl: 'https://placehold.co/150x300/FF9800/fff?text=IPA',
           },
           {
             id: '2',
@@ -51,6 +68,7 @@ export const BeerStore = signalStore(
             abv: 5.0,
             ibu: 22,
             description: 'A smooth and malty dark lager',
+            imageUrl: 'https://placehold.co/150x300/795548/fff?text=Lager',
           },
           {
             id: '3',
@@ -60,6 +78,7 @@ export const BeerStore = signalStore(
             abv: 4.8,
             ibu: 15,
             description: 'Refreshing wheat beer with banana and clove notes',
+            imageUrl: 'https://placehold.co/150x300/FFC107/333?text=Wheat',
           },
           {
             id: '4',
@@ -70,30 +89,74 @@ export const BeerStore = signalStore(
             ibu: 45,
             description:
               'Rich and creamy stout with coffee and chocolate flavors',
+            imageUrl: 'https://placehold.co/150x300/212121/fff?text=Stout',
+          },
+          {
+            id: '5',
+            name: 'Pilsner Gold',
+            brewery: 'Golden Brewery',
+            style: 'Pilsner',
+            abv: 4.9,
+            ibu: 35,
+            description: 'Crisp and refreshing pilsner',
+            imageUrl: 'https://placehold.co/150x300/FFEB3B/333?text=Pilsner',
+          },
+          {
+            id: '6',
+            name: 'Red Ale',
+            brewery: 'Red House Brewing',
+            style: 'Red Ale',
+            abv: 5.5,
+            ibu: 28,
+            description: 'Malty red ale with caramel notes',
+            imageUrl: 'https://placehold.co/150x300/D32F2F/fff?text=Red+Ale',
           },
         ];
 
+        // Place beers in specific slots (e.g., positions 1, 5, 12, 23, 45, 78)
+        const updatedSlots = [...store.slots()];
+        updatedSlots[0].beer = dummyBeers[0]; // Position 1
+        updatedSlots[4].beer = dummyBeers[1]; // Position 5
+        updatedSlots[11].beer = dummyBeers[2]; // Position 12
+        updatedSlots[22].beer = dummyBeers[3]; // Position 23
+        updatedSlots[44].beer = dummyBeers[4]; // Position 45
+        updatedSlots[77].beer = dummyBeers[5]; // Position 78
+
         patchState(store, {
-          beers: dummyBeers,
+          slots: updatedSlots,
           isLoading: false,
         });
       }, 500);
     },
 
-    addBeer(beer: Beer): void {
-      patchState(store, (state) => ({
-        beers: [...state.beers, beer],
-      }));
+    addBeerToSlot(beer: Beer, position: number): void {
+      if (position < 1 || position > TOTAL_SLOTS) {
+        console.error('Invalid slot position');
+        return;
+      }
+
+      patchState(store, (state) => {
+        const updatedSlots = [...state.slots];
+        updatedSlots[position - 1].beer = beer;
+        return { slots: updatedSlots };
+      });
     },
 
-    removeBeer(id: string): void {
-      patchState(store, (state) => ({
-        beers: state.beers.filter((beer) => beer.id !== id),
-      }));
+    removeBeerFromSlot(position: number): void {
+      if (position < 1 || position > TOTAL_SLOTS) {
+        console.error('Invalid slot position');
+        return;
+      }
+
+      patchState(store, (state) => {
+        const updatedSlots = [...state.slots];
+        updatedSlots[position - 1].beer = null;
+        return { slots: updatedSlots };
+      });
     },
 
-    clearBeers(): void {
-      patchState(store, { beers: [] });
+    clearAllBeers(): void {
+      patchState(store, { slots: initialSlots });
     },
   }))
 );

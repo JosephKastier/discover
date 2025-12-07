@@ -1,50 +1,48 @@
-<div class="beer-rack">
-  <h2>🍺 Beer Rack</h2>
+<div class="beer-rack-container">
+  <div class="rack-header">
+    <h2>🍺 Bierregal</h2>
+    <div class="rack-stats">
+      <span class="badge bg-success">{{ beerFacade.beerCount() }} Biere</span>
+      <span class="badge bg-secondary"
+        >{{ beerFacade.emptySlots() }} freie Plätze</span
+      >
+    </div>
+  </div>
 
   @if (beerFacade.isLoading()) {
-  <div class="loading">Loading beers...</div>
-  } @if (beerFacade.error()) {
-  <div class="error">{{ beerFacade.error() }}</div>
-  } @if (beerFacade.hasBeer() && !beerFacade.isLoading()) {
-  <div class="beer-count">
-    <strong>Total Beers:</strong> {{ beerFacade.beerCount() }}
+  <div class="text-center p-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Lädt...</span>
+    </div>
   </div>
+  } @if (beerFacade.error()) {
+  <div class="alert alert-danger">{{ beerFacade.error() }}</div>
+  } @if (!beerFacade.isLoading()) {
+  <div class="rack-grid">
+    @for (slot of beerFacade.slots(); track slot.position) {
+    <div class="rack-slot" [class.occupied]="slot.beer !== null">
+      <div class="slot-number">{{ slot.position }}</div>
 
-  <div class="beer-list">
-    @for (beer of beerFacade.beers(); track beer.id) {
-    <div class="beer-card">
-      <div class="beer-header">
-        <h3>{{ beer.name }}</h3>
-        <button
-          class="remove-btn"
-          (click)="beerFacade.removeBeer(beer.id)"
-          title="Remove beer"
-        >
-          ×
-        </button>
-      </div>
-      <div class="beer-details">
-        <p class="brewery">{{ beer.brewery }}</p>
-        <p class="style">{{ beer.style }}</p>
-        <div class="beer-stats">
-          <span class="abv">ABV: {{ beer.abv }}%</span>
-          @if (beer.ibu) {
-          <span class="ibu">IBU: {{ beer.ibu }}</span>
-          }
+      @if (slot.beer) {
+      <div class="beer-bottle" [title]="slot.beer.name">
+        <img
+          [src]="slot.beer.imageUrl"
+          [alt]="slot.beer.name"
+          class="beer-image"
+        />
+        <div class="beer-info">
+          <div class="beer-name">{{ slot.beer.name }}</div>
+          <div class="beer-brewery">{{ slot.beer.brewery }}</div>
+          <div class="beer-abv">{{ slot.beer.abv }}% ABV</div>
         </div>
-        @if (beer.description) {
-        <p class="description">{{ beer.description }}</p>
-        }
       </div>
+      } @else {
+      <div class="empty-slot">
+        <span class="empty-text">Leer</span>
+      </div>
+      }
     </div>
     }
-  </div>
-  } @if (!beerFacade.hasBeer() && !beerFacade.isLoading()) {
-  <div class="empty-state">
-    <p>No beers in the rack yet. Load some beers!</p>
-    <button class="load-btn" (click)="beerFacade.loadBeers()">
-      Load Beers
-    </button>
   </div>
   }
 </div>

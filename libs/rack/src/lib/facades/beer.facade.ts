@@ -9,8 +9,9 @@ export class BeerFacade {
   private readonly store = inject(BeerStore);
 
   // Selectors
-  readonly beers = this.store.beers;
+  readonly slots = this.store.slots;
   readonly beerCount = this.store.beerCount;
+  readonly emptySlots = this.store.emptySlots;
   readonly hasBeer = this.store.hasBeer;
   readonly isLoading = this.store.isLoading;
   readonly error = this.store.error;
@@ -20,15 +21,15 @@ export class BeerFacade {
     this.store.loadBeers();
   }
 
-  addBeer(beer: Beer): void {
-    this.store.addBeer(beer);
+  addBeerToSlot(beer: Beer, position: number): void {
+    this.store.addBeerToSlot(beer, position);
   }
 
-  removeBeer(id: string): void {
-    this.store.removeBeer(id);
+  removeBeerFromSlot(position: number): void {
+    this.store.removeBeerFromSlot(position);
   }
 
-  clearBeers(): void {
-    this.store.clearBeers();
+  clearAllBeers(): void {
+    this.store.clearAllBeers();
   }
 }
