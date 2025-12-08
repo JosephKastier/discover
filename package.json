@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "start:api": "nx serve api",
+    "start:api:prod": "dotenv -e .env.production -- nx serve api",
     "start:discover-beer": "nx serve discover-beer",
     "start:beer-rack": "nx serve beer-rack",
     "build:discover-beer": "nx build discover-beer",
@@ -15,7 +16,10 @@
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
     "db:seed": "npx tsx prisma/seed.ts",
-    "db:studio": "npx prisma studio"
+    "db:studio": "npx prisma studio",
+    "db:migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
+    "db:seed:prod": "dotenv -e .env.production -- npx tsx prisma/seed.ts",
+    "db:studio:prod": "dotenv -e .env.production -- npx prisma studio"
   },
   "repository": {
     "type": "git",
@@ -57,6 +61,7 @@
     "@typescript-eslint/utils": "^8.40.0",
     "angular-eslint": "^20.3.0",
     "cypress": "^15.6.0",
+    "dotenv-cli": "^11.0.0",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
