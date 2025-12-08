@@ -31,4 +31,12 @@ coverage
 .env
 .env.local
 
+# database
+*.db
+*.db-journal
+prisma/dev.db
+prisma/dev.db-journal
+
 .angular
+
+/generated/prisma

@@ -1,0 +1,27 @@
+// This is your Prisma schema file for production (PostgreSQL)
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Beer {
+  id          String   @id @default(cuid())
+  name        String
+  brewery     String
+  style       String
+  abv         Float
+  ibu         Int?
+  description String?
+  imageUrl    String?
+  position    Int      @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([position])
+}
