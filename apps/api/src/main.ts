@@ -1,12 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
+import beerRoutes from './routes/beer.routes';
 
 const host = process.env.HOST ?? '0.0.0.0';
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
-const prisma = new PrismaClient();
 
 // Disable ETag generation (causes 304 responses)
 app.set('etag', false);
@@ -25,70 +24,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-
-// GET all beers
-app.get('/api/beers', async (req, res) => {
-  try {
-    const beers = await prisma.beer.findMany({
-      orderBy: { position: 'asc' },
-    });
-    res.json(beers);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch beers' });
-  }
-});
-
-// GET beer by id
-app.get('/api/beers/:id', async (req, res) => {
-  try {
-    const beer = await prisma.beer.findUnique({
-      where: { id: req.params.id },
-    });
-    if (!beer) {
-      return res.status(404).json({ error: 'Beer not found' });
-    }
-    res.json(beer);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch beer' });
-  }
-});
-
-// POST new beer
-app.post('/api/beers', async (req, res) => {
-  try {
-    const newBeer = await prisma.beer.create({
-      data: req.body,
-    });
-    res.status(201).json(newBeer);
-  } catch (error) {
-    res.status(400).json({ error: 'Failed to create beer' });
-  }
-});
-
-// PUT update beer
-app.put('/api/beers/:id', async (req, res) => {
-  try {
-    const updatedBeer = await prisma.beer.update({
-      where: { id: req.params.id },
-      data: req.body,
-    });
-    res.json(updatedBeer);
-  } catch (error) {
-    res.status(404).json({ error: 'Beer not found' });
-  }
-});
-
-// DELETE beer
-app.delete('/api/beers/:id', async (req, res) => {
-  try {
-    const deletedBeer = await prisma.beer.delete({
-      where: { id: req.params.id },
-    });
-    res.json(deletedBeer);
-  } catch (error) {
-    res.status(404).json({ error: 'Beer not found' });
-  }
-});
+app.use('/api', beerRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

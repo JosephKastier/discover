@@ -1,18 +1,16 @@
 -- CreateTable
 CREATE TABLE "Beer" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "brewery" TEXT NOT NULL,
     "style" TEXT NOT NULL,
-    "abv" DOUBLE PRECISION NOT NULL,
+    "abv" REAL NOT NULL,
     "ibu" INTEGER,
     "description" TEXT,
     "imageUrl" TEXT,
     "position" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Beer_pkey" PRIMARY KEY ("id")
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateIndex
