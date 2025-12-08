@@ -4,7 +4,7 @@ services:
     runtime: node
     region: frankfurt
     plan: free
-    buildCommand: npm ci && npx prisma generate && npx prisma migrate deploy && npm run build:api
+    buildCommand: npm ci && npx prisma generate && npx prisma migrate deploy && npx nx build api --configuration=production
     startCommand: node dist/apps/api/main.js
     healthCheckPath: /health
     envVars:
