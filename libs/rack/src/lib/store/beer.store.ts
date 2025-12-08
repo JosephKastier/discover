@@ -2,6 +2,7 @@ import { computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { Beer, RackSlot } from '../models/beer.model';
+import { environment } from '../../../../../apps/beer-rack/src/environments/environment';
 
 interface BeerState {
   slots: RackSlot[];
@@ -10,7 +11,7 @@ interface BeerState {
 }
 
 const TOTAL_SLOTS = 100;
-const API_URL = 'http://localhost:3000/api';
+const API_URL = environment.apiUrl;
 
 // Initialize 100 empty slots
 const initialSlots: RackSlot[] = Array.from({ length: TOTAL_SLOTS }, (_, i) => ({
@@ -42,10 +43,10 @@ export const BeerStore = signalStore(
         http.get<Beer[]>(`${API_URL}/beers`).subscribe({
           next: (beers) => {
             const updatedSlots = [...store.slots()];
-            beers.forEach((beer, index) => {
-              const positions = [0, 4, 11, 22]; // Positions 1, 5, 12, 23
-              if (index < positions.length) {
-                updatedSlots[positions[index]].beer = beer;
+            beers.forEach((beer) => {
+              const slotIndex = beer.position - 1;
+              if (slotIndex >= 0 && slotIndex < updatedSlots.length) {
+                updatedSlots[slotIndex].beer = beer;
               }
             });
 

@@ -7,6 +7,7 @@ export interface Beer {
   ibu?: number;
   description?: string;
   imageUrl?: string;
+  position: number;
 }
 
 export interface RackSlot {

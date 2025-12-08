@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules",
+    "prestart:discover-beer": "node scripts/check-api.js",
     "start:discover-beer": "nx serve discover-beer",
+    "prestart:beer-rack": "node scripts/check-api.js",
     "start:beer-rack": "nx serve beer-rack",
     "start:api": "nx serve api",
     "build:discover-beer": "nx build discover-beer",

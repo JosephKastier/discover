@@ -20,6 +20,7 @@ interface Beer {
   ibu?: number;
   description?: string;
   imageUrl?: string;
+  position: number;
 }
 
 // Mock Database
@@ -33,6 +34,7 @@ const beers: Beer[] = [
     ibu: 27,
     description: 'Ein klassisches deutsches Pilsner',
     imageUrl: '/beers/1.png',
+    position: 1,
   },
   {
     id: '2',
@@ -43,6 +45,7 @@ const beers: Beer[] = [
     ibu: 28,
     description: 'Prämienbier mit erlesenen Hopfensorten',
     imageUrl: '/beers/2.png',
+    position: 5,
   },
   {
     id: '3',
@@ -53,6 +56,7 @@ const beers: Beer[] = [
     ibu: 45,
     description: 'Das legendäre irische Stout',
     imageUrl: '/beers/3.png',
+    position: 12,
   },
   {
     id: '4',
@@ -63,6 +67,7 @@ const beers: Beer[] = [
     ibu: 14,
     description: 'Das beliebteste Weizenbier Deutschlands',
     imageUrl: '/beers/4.png',
+    position: 23,
   },
 ];
 
