@@ -1,0 +1,101 @@
+@import '../../../styles/theme';
+
+.beer-test-card {
+  background: $bg-white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, $accent-beige 0%, $accent-gold-dark 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .beer-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .beer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+
+    .beer-name {
+      font-weight: 600;
+      color: $accent-gold;
+      font-size: 0.95rem;
+    }
+
+    .beer-brewery {
+      font-size: 0.85rem;
+      color: $text-muted;
+    }
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .card-text {
+    color: $text-muted;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+
+    .badge-style {
+      background: $accent-beige;
+      color: $primary-brown;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .text-muted {
+      font-size: 0.85rem;
+    }
+  }
+}

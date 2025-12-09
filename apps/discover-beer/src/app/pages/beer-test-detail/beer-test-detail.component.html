@@ -1,0 +1,72 @@
+<div class="detail-container">
+  <div class="container">
+    <a routerLink="/" class="back-link"> <i class="bi bi-arrow-left"></i> Zurück zur Übersicht </a>
+
+    @if (store.isLoading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Lädt...</span>
+      </div>
+    </div>
+    } @if (store.selectedBeerTest(); as beerTest) {
+    <article class="beer-test-detail">
+      <!-- Header -->
+      <header class="detail-header">
+        <div class="beer-info-header">
+          @if (beerTest.beer.imageUrl) {
+          <div class="beer-image-large">
+            <img
+              [src]="getImageUrl(beerTest.beer.imageUrl)"
+              [alt]="beerTest.beer.name"
+              class="img-fluid"
+            />
+          </div>
+          }
+          <div class="beer-meta">
+            <h1 class="detail-title">{{ beerTest.title }}</h1>
+            <div class="beer-details">
+              <h2 class="beer-name">{{ beerTest.beer.name }}</h2>
+              <p class="beer-brewery">{{ beerTest.beer.brewery }}</p>
+              <div class="beer-specs">
+                <span class="badge bg-primary">{{ beerTest.beer.style }}</span>
+                <span class="spec">{{ beerTest.beer.abv }}% Vol.</span>
+                @if (beerTest.beer.ibu) {
+                <span class="spec">{{ beerTest.beer.ibu }} IBU</span>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-meta">
+          <span class="text-muted">
+            Veröffentlicht am {{ beerTest.createdAt | date : 'dd. MMMM yyyy' }}
+          </span>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <section class="detail-content">
+        <div class="test-text">
+          <p>{{ beerTest.text }}</p>
+        </div>
+
+        @if (beerTest.beer.description) {
+        <div class="beer-description">
+          <h3>Über das Bier</h3>
+          <p>{{ beerTest.beer.description }}</p>
+        </div>
+        } @if (beerTest.link) {
+        <div class="external-link">
+          <a [href]="beerTest.link" target="_blank" class="btn btn-outline-primary">
+            <i class="bi bi-box-arrow-up-right"></i>
+            Vollständigen Artikel lesen
+          </a>
+        </div>
+        }
+      </section>
+    </article>
+    } @if (store.error()) {
+    <div class="alert alert-danger" role="alert">{{ store.error() }}</div>
+    }
+  </div>
+</div>

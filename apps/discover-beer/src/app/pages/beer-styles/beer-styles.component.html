@@ -1,0 +1,31 @@
+<div class="beer-styles-page">
+  <section class="hero-section">
+    <div class="container">
+      <h1>Biersorten entdecken</h1>
+      <p class="lead">Von Pils bis Stout – lerne die Vielfalt der Bierstile kennen</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="styles-grid">
+        @for (style of beerStyles; track style.name) {
+        <div class="style-card">
+          <div class="style-image">
+            <img [src]="style.imageUrl" [alt]="style.name" />
+          </div>
+          <div class="style-content">
+            <h3>{{ style.name }}</h3>
+            <p>{{ style.description }}</p>
+            <div class="characteristics">
+              @for (char of style.characteristics; track char) {
+              <span class="badge">{{ char }}</span>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

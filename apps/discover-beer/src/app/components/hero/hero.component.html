@@ -1,0 +1,18 @@
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Aktuelle Tests im Fokus</h1>
+      @if (newestBeerTestId) {
+      <a [routerLink]="['/bier-test', newestBeerTestId]" class="btn btn-hero">
+        Hier geht's zum neuesten Biertest
+      </a>
+      } @else {
+      <button class="btn btn-hero" disabled>Hier geht's zum neuesten Biertest</button>
+      }
+    </div>
+    <div class="hero-image">
+      <img src="/hero.avif" alt="Bierglas" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<header class="main-header">
+  <nav class="navbar">
+    <div class="container">
+      <a routerLink="/" class="navbar-brand">
+        <img src="/android-chrome-192x192.png" alt="Bier Icon" class="brand-icon" />
+        Bier Entdecken
+      </a>
+
+      <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu" [class.active]="menuOpen">
+        <li
+          ><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            >Startseite</a
+          ></li
+        >
+        <li><a routerLink="/biertests" routerLinkActive="active">Biertests</a></li>
+        <li><a routerLink="/biersorten" routerLinkActive="active">Biersorten</a></li>
+        <li><a [href]="bierRegalUrl" target="_blank">Bierregal</a></li>
+        <li><a routerLink="/shop-empfehlungen" routerLinkActive="active">Shop Empfehlungen</a></li>
+      </ul>
+
+      <button class="search-btn">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>

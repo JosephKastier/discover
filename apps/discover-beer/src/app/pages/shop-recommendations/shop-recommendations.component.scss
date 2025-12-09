@@ -1,0 +1,167 @@
+@import '../../../styles/theme';
+
+.shop-recommendations-page {
+  min-height: 100vh;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #8b6f47 0%, $accent-gold-dark 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+}
+
+.content-section {
+  padding: 4rem 0;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}
+
+.intro-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+
+  p {
+    font-size: 1.1rem;
+    color: $text-muted;
+    line-height: 1.8;
+  }
+}
+
+.shops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.shop-card {
+  background: $bg-white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  .shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+
+    .shop-info {
+      flex: 1;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $text-dark;
+        margin-bottom: 0.5rem;
+      }
+
+      .category-badge {
+        display: inline-block;
+        background: $accent-beige;
+        color: $primary-brown;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+    }
+
+    .shop-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $accent-gold;
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .shop-description {
+    color: $text-muted;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-visit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $accent-gold;
+    color: $primary-brown;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: $accent-gold-dark;
+      transform: translateX(4px);
+    }
+
+    i {
+      transition: transform $transition-fast;
+    }
+
+    &:hover i {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.disclaimer {
+  text-align: center;
+  padding: 2rem;
+  background: $bg-light;
+  border-radius: 8px;
+
+  p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .shops-grid {
+    grid-template-columns: 1fr;
+  }
+}

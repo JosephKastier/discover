@@ -1,0 +1,30 @@
+<div class="beer-tests-page">
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Alle Biertests</h2>
+        <p class="text-muted"
+          >Entdecke unsere umfangreiche Sammlung an Bierverkostungen und Tests</p
+        >
+      </div>
+
+      @if (store.isLoading()) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Lädt...</span>
+        </div>
+      </div>
+      } @if (store.error()) {
+      <div class="alert alert-danger" role="alert">{{ store.error() }}</div>
+      } @if (store.hasBeerTests() && !store.isLoading()) {
+      <div class="beer-tests-grid">
+        @for (beerTest of store.beerTests(); track beerTest.id) {
+        <app-beer-test-card [beerTest]="beerTest" />
+        }
+      </div>
+      } @if (!store.hasBeerTests() && !store.isLoading() && !store.error()) {
+      <div class="alert alert-info" role="alert">Noch keine Biertests vorhanden.</div>
+      }
+    </div>
+  </section>
+</div>

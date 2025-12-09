@@ -1,0 +1,50 @@
+<div class="shop-recommendations-page">
+  <section class="hero-section">
+    <div class="container">
+      <h1>Shop Empfehlungen</h1>
+      <p class="lead">Die besten Online-Shops für Bierliebhaber</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="intro-text">
+        <p>
+          Entdecke unsere handverlesenen Shop-Empfehlungen für den Bierkauf. Ob Craft Beer,
+          regionale Spezialitäten oder internationale Premium-Biere – hier findest du die besten
+          Adressen für deinen nächsten Biereinkauf.
+        </p>
+      </div>
+
+      <div class="shops-grid">
+        @for (shop of shops; track shop.name) {
+        <div class="shop-card">
+          <div class="shop-header">
+            <div class="shop-info">
+              <h3>{{ shop.name }}</h3>
+              <span class="category-badge">{{ shop.category }}</span>
+            </div>
+            <div class="shop-rating">
+              <i class="bi bi-star-fill"></i>
+              <span>{{ shop.rating }}</span>
+            </div>
+          </div>
+          <p class="shop-description">{{ shop.description }}</p>
+          <a [href]="shop.url" target="_blank" rel="noopener noreferrer" class="btn-visit">
+            Shop besuchen
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+        }
+      </div>
+
+      <div class="disclaimer">
+        <p class="text-muted">
+          <i class="bi bi-info-circle"></i>
+          Die genannten Links sind Empfehlungen. Wir erhalten keine Provision für Käufe über diese
+          Links.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,33 @@
+<div class="beer-test-card">
+  <a [routerLink]="['/bier-test', beerTest().id]" class="card-link">
+    @if (beerTest().beer.imageUrl) {
+    <div class="card-image">
+      <img
+        [src]="getImageUrl(beerTest().beer.imageUrl)"
+        [alt]="beerTest().beer.name"
+        class="beer-image"
+      />
+    </div>
+    }
+
+    <div class="card-content">
+      <div class="beer-info">
+        <span class="beer-name">{{ beerTest().beer.name }}</span>
+        <span class="beer-brewery">{{ beerTest().beer.brewery }}</span>
+      </div>
+
+      <h3 class="card-title">{{ beerTest().title }}</h3>
+
+      <p class="card-text">
+        {{ getExcerpt(beerTest().text) }}
+      </p>
+
+      <div class="card-footer">
+        <span class="badge badge-style">{{ beerTest().beer.style }}</span>
+        <span class="text-muted">
+          {{ beerTest().createdAt | date : 'dd.MM.yyyy' }}
+        </span>
+      </div>
+    </div>
+  </a>
+</div>

@@ -28,7 +28,7 @@
         (keydown.space)="onBeerClick(slot.beer)"
         aria-label="Bier {{ slot.beer.name }} anzeigen"
       >
-        <img [src]="slot.beer.imageUrl || '/dummy.png'" [alt]="slot.beer.name" class="beer-image" />
+        <img [src]="getImageUrl(slot.beer.imageUrl)" [alt]="slot.beer.name" class="beer-image" />
       </button>
       } @else {
       <div class="empty-slot">

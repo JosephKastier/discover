@@ -1,0 +1,100 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <app-hero />
+
+  <!-- Beer Tests Section -->
+  <section class="beer-tests-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Biertests</h2>
+        <p class="text-muted">Die neuesten Biertests und Verkostungen</p>
+      </div>
+
+      @if (store.isLoading()) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Lädt...</span>
+        </div>
+      </div>
+      } @if (store.error()) {
+      <div class="alert alert-danger" role="alert">{{ store.error() }}</div>
+      } @if (store.hasBeerTests() && !store.isLoading()) {
+      <div class="beer-tests-grid">
+        @for (beerTest of topBeerTests; track beerTest.id) {
+        <app-beer-test-card [beerTest]="beerTest" />
+        }
+      </div>
+      <div class="text-center mt-4">
+        <a routerLink="/biertests" class="btn-more">Alle Biertests ansehen</a>
+      </div>
+      } @if (!store.hasBeerTests() && !store.isLoading() && !store.error()) {
+      <div class="alert alert-info" role="alert"> Noch keine Biertests vorhanden. </div>
+      }
+    </div>
+  </section>
+
+  <!-- Beer Styles Section -->
+  <section class="beer-styles-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Biersorten</h2>
+        <p class="text-muted">Entdecke verschiedene Bierstile</p>
+      </div>
+      <div class="styles-grid">
+        @for (style of beerStyles; track style.name) {
+        <div class="style-card">
+          <div class="style-image">
+            <img [src]="style.imageUrl" [alt]="style.name" />
+          </div>
+          <div class="style-content">
+            <h3>{{ style.name }}</h3>
+            <p>{{ style.description }}</p>
+            <div class="characteristics">
+              @for (char of style.characteristics; track char) {
+              <span class="badge">{{ char }}</span>
+              }
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      <div class="text-center mt-4">
+        <a routerLink="/biersorten" class="btn-more">Alle Biersorten ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Recommendations Section -->
+  <section class="shop-recommendations-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Shop Empfehlungen</h2>
+        <p class="text-muted">Die besten Online-Shops für Bierliebhaber</p>
+      </div>
+      <div class="shops-grid">
+        @for (shop of shops; track shop.name) {
+        <div class="shop-card">
+          <div class="shop-header">
+            <div class="shop-info">
+              <h3>{{ shop.name }}</h3>
+              <span class="category-badge">{{ shop.category }}</span>
+            </div>
+            <div class="shop-rating">
+              <i class="bi bi-star-fill"></i>
+              <span>{{ shop.rating }}</span>
+            </div>
+          </div>
+          <p class="shop-description">{{ shop.description }}</p>
+          <a [href]="shop.url" target="_blank" rel="noopener noreferrer" class="btn-visit">
+            Shop besuchen
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+        }
+      </div>
+      <div class="text-center mt-4">
+        <a routerLink="/shop-empfehlungen" class="btn-more">Alle Shop Empfehlungen ansehen</a>
+      </div>
+    </div>
+  </section>
+</div>

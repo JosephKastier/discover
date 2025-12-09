@@ -2,7 +2,7 @@
 <div class="beer-toast">
   <div class="toast-content">
     <div class="toast-image">
-      <img [src]="beer.imageUrl || '/dummy.png'" [alt]="beer.name" />
+      <img [src]="getImageUrl(beer.imageUrl)" [alt]="beer.name" />
     </div>
     <div class="toast-info">
       <h3>{{ beer.name }}</h3>

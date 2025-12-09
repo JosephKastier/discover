@@ -1,0 +1,113 @@
+@import '../../../styles/theme';
+
+.hero-section {
+  background: $primary-brown;
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/beer-pattern.png') repeat;
+    opacity: 0.05;
+  }
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-text {
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+      color: white;
+    }
+
+    .btn-hero {
+      background: $accent-beige;
+      color: $primary-brown;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all $transition-normal;
+      text-decoration: none;
+      display: inline-block;
+
+      &:hover:not(:disabled) {
+        background: $accent-gold-dark;
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 60%;
+      height: auto;
+      border-radius: 16px;
+      filter: drop-shadow($shadow-xl);
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .hero-section {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-text .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-image {
+      order: -1;
+
+      img {
+        max-width: 80%;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .hero-section {
+    padding: 3rem 0;
+
+    .hero-text .hero-title {
+      font-size: 2rem;
+    }
+  }
+}

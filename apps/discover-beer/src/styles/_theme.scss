@@ -1,0 +1,40 @@
+// Brand Colors
+$primary-brown: #3e2723;
+$primary-brown-dark: #4a2c2a;
+$accent-gold: #ffd54f;
+$accent-gold-dark: #c89860;
+$accent-light-gold: #ffeb3b;
+$accent-beige: #d4a574;
+
+// Text Colors
+$text-light: #d7ccc8;
+$text-dark: #333;
+$text-muted: #6c757d;
+
+// Background Colors
+$bg-light: #f8f9fa;
+$bg-white: #ffffff;
+
+// State Colors (using brown theme)
+$color-primary: #c89860;
+$color-primary-dark: #4a2c2a;
+$color-danger: #8b4513;
+$color-info: #d4a574;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 992px;
+$breakpoint-desktop: 1200px;
+
+// Container
+$container-max-width: 1400px;

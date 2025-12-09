@@ -5,6 +5,7 @@ import { BeerToastComponent } from '../../components/beer-toast/beer-toast.compo
 import { RackHeaderComponent } from '../../components/rack-header/rack-header.component';
 import { CommonModule } from '@angular/common';
 import { Beer } from '../../models/beer.model';
+import { environment } from 'apps/beer-rack/src/environments/environment';
 
 @Component({
   selector: 'lib-rack',
@@ -26,5 +27,10 @@ export class RackPage implements OnInit {
 
   closeBeerToast(): void {
     this.selectedBeer.set(null);
+  }
+
+  getImageUrl(imageUrl: string | undefined): string {
+    if (!imageUrl) return '/dummy.png';
+    return `${environment.apiUrl.replace('/api', '')}${imageUrl}`;
   }
 }
