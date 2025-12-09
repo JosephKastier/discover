@@ -1,0 +1,66 @@
+@import './theme';
+
+.styles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.style-card {
+  background: $bg-white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  .style-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .style-content {
+    padding: 1.5rem;
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $accent-gold;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .characteristics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .badge {
+        background: $accent-beige;
+        color: $primary-brown;
+        padding: 0.25rem 0.65rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+}

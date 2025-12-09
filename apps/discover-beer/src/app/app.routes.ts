@@ -30,6 +30,21 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'impressum',
+    loadComponent: () =>
+      import('./pages/impressum/impressum.component').then((m) => m.ImpressumComponent),
+  },
+  {
+    path: 'datenschutz',
+    loadComponent: () =>
+      import('./pages/datenschutz/datenschutz.component').then((m) => m.DatenschutzComponent),
+  },
+  {
+    path: 'kontakt',
+    loadComponent: () =>
+      import('./pages/kontakt/kontakt.component').then((m) => m.KontaktComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

@@ -13,25 +13,25 @@ export class BeerStylesComponent {
     {
       name: 'Pils',
       description: 'Klassisches deutsches Bier mit hopfiger Note und klarer, goldener Farbe.',
-      imageUrl: '/assets/beers/1.png',
+      imageUrl: '/beer-styles/pils.avif',
       characteristics: ['Hopfig', 'Herb', 'Klar', 'Erfrischend'],
     },
     {
       name: 'Weizenbier',
       description: 'Obergäriges Bier mit fruchtigen und würzigen Aromen.',
-      imageUrl: '/assets/beers/2.png',
+      imageUrl: '/beer-styles/weizen.avif',
       characteristics: ['Fruchtig', 'Würzig', 'Trüb', 'Spritzig'],
     },
     {
       name: 'Stout',
       description: 'Dunkles, kräftiges Bier mit Röstaromen und cremiger Textur.',
-      imageUrl: '/assets/beers/3.png',
+      imageUrl: '/beer-styles/stout.avif',
       characteristics: ['Röstmalzig', 'Cremig', 'Dunkel', 'Kräftig'],
     },
     {
       name: 'IPA',
       description: 'India Pale Ale mit intensivem Hopfenaroma und höherem Alkoholgehalt.',
-      imageUrl: '/assets/beers/4.png',
+      imageUrl: '/beer-styles/ipa.avif',
       characteristics: ['Hopfenbetont', 'Bitter', 'Fruchtig', 'Aromatisch'],
     },
   ];
