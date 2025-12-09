@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Beer {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
   brewery     String
   style       String
@@ -22,9 +22,23 @@ model Beer {
   ibu         Int?
   description String?
   imageUrl    String?
-  position    Int      @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  position    Int         @unique
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  beerTests   BeerTest[]
 
   @@index([position])
+}
+
+model BeerTest {
+  id        String   @id @default(cuid())
+  title     String
+  text      String
+  link      String?
+  beerId    String
+  beer      Beer     @relation(fields: [beerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([beerId])
 }
