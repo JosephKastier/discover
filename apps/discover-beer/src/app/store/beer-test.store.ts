@@ -44,8 +44,8 @@ export const BeerTestStore = signalStore(
             ...test,
             beer: {
               ...test.beer,
-              imageUrl: `/beer-tests/${(index % 7) + 1}.avif`
-            }
+              imageUrl: `/beer-tests/${(index % 7) + 1}.avif`,
+            },
           }));
           patchState(store, {
             beerTests: beerTestsWithImages,
@@ -72,8 +72,8 @@ export const BeerTestStore = signalStore(
             ...beerTest,
             beer: {
               ...beerTest.beer,
-              imageUrl: `/beer-tests/${(Math.floor(Math.random() * 7) + 1)}.avif`
-            }
+              imageUrl: `/beer-tests/${Math.floor(Math.random() * 7) + 1}.avif`,
+            },
           };
           patchState(store, {
             selectedBeerTest: beerTestWithImage,
