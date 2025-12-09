@@ -1,9 +1,12 @@
 @import '../../../styles/theme';
 
 .hero-section {
-  background: $primary-brown;
+  background: linear-gradient(rgba(62, 39, 35, 0.8), rgba(62, 39, 35, 0.8)), url('/hero.avif');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: white;
-  padding: 4rem 0;
+  padding: 6rem 0;
   position: relative;
   overflow: hidden;
 
@@ -13,8 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/assets/beer-pattern.png') repeat;
-    opacity: 0.05;
+    background: rgba(62, 39, 35, 0.3);
   }
 
   .container {
@@ -24,15 +26,17 @@
   }
 
   .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
+    text-align: center;
   }
 
   .hero-text {
+    max-width: 800px;
+
     .hero-title {
       font-size: 3rem;
       font-weight: 700;
@@ -66,38 +70,14 @@
       }
     }
   }
-
-  .hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      max-width: 60%;
-      height: auto;
-      border-radius: 16px;
-      filter: drop-shadow($shadow-xl);
-    }
-  }
 }
 
 @media (max-width: $breakpoint-tablet) {
   .hero-section {
-    .hero-content {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    padding: 4rem 0;
 
     .hero-text .hero-title {
       font-size: 2.5rem;
-    }
-
-    .hero-image {
-      order: -1;
-
-      img {
-        max-width: 80%;
-      }
     }
   }
 }
