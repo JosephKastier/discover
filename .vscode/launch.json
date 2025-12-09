@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug api with Nx",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "api"],
+      "env": {
+        "NODE_OPTIONS": "--inspect=9229"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/api/dist/**/*.(m|c|)js", "!**/node_modules/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start API",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:api"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start Beer Rack",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:beer-rack"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 Start API + Beer Rack",
+      "configurations": ["Start API", "Start Beer Rack"],
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "dev",
+        "order": 1
+      }
+    }
+  ]
+}
